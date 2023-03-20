@@ -11,6 +11,7 @@ public class playerMovement : MonoBehaviour
     public GameObject talismanObtained;
     public GameObject jobDone;
     public GameObject textBox;
+    public GameObject tempdialogue;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,7 @@ public class playerMovement : MonoBehaviour
         chickenText.SetActive(false);
         talismanObtained.SetActive(false);
         jobDone.SetActive(false);
+        tempdialogue.SetActive(false);
     }
 
     // Update is called once per frame
@@ -58,10 +60,7 @@ public class playerMovement : MonoBehaviour
             wandAcquired = true;
             talismanObtained.SetActive(true);
             chickenText.SetActive(false);
-            //if(textbox != null)
-            //{
-
-            //}
+            tempdialogue.SetActive(true);
             Destroy(collision.gameObject);
         }
         if (wandAcquired && collision.gameObject.name == "enemy")
@@ -70,11 +69,13 @@ public class playerMovement : MonoBehaviour
             talismanObtained.SetActive(false);
             chickenText.SetActive(false);
             jobDone.SetActive(true);
+            tempdialogue.SetActive(true);
         } else if (!wandAcquired && collision.gameObject.name == "enemy")
         {
             chickenText.SetActive(true);
             talismanObtained.SetActive(false);
             jobDone.SetActive(false);
+            tempdialogue.SetActive(true);
         }
     }
 
