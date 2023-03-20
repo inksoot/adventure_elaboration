@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//public UnityEngine.UI.Text textbox;
 
 public class playerMovement : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class playerMovement : MonoBehaviour
     public GameObject chickenText;
     public GameObject talismanObtained;
     public GameObject jobDone;
+    public GameObject textBox;
 
     // Start is called before the first frame update
     void Start()
@@ -56,6 +58,10 @@ public class playerMovement : MonoBehaviour
             wandAcquired = true;
             talismanObtained.SetActive(true);
             chickenText.SetActive(false);
+            //if(textbox != null)
+            //{
+
+            //}
             Destroy(collision.gameObject);
         }
         if (wandAcquired && collision.gameObject.name == "enemy")
