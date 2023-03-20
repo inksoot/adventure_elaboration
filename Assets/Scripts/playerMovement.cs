@@ -13,13 +13,22 @@ public class playerMovement : MonoBehaviour
     public GameObject textBox;
     public GameObject tempdialogue;
 
+    Animator myAnim;
+
+    //bool walkUp = false;
+    //bool walkDown = false;
+    //bool walkLeft = false;
+    //bool walkRight = false;
+
     // Start is called before the first frame update
     void Start()
     {
         chickenText.SetActive(false);
         talismanObtained.SetActive(false);
         jobDone.SetActive(false);
-        tempdialogue.SetActive(false);
+        tempdialogue.SetActive(true);
+
+        myAnim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -31,19 +40,45 @@ public class playerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             newPos.y += movementSpd * Time.deltaTime;
+            myAnim.SetBool("playerUp", true);
+        }
+        else
+        {
+            myAnim.SetBool("playerUp", false);
+            myAnim.SetBool("playerIdle", true);
         }
         if (Input.GetKey(KeyCode.S))
         {
             newPos.y -= movementSpd * Time.deltaTime;
+            myAnim.SetBool("walkDown", true);
+        }
+        else
+        {
+            myAnim.SetBool("walkDown", false);
+            myAnim.SetBool("playerIdle", true);
         }
         if (Input.GetKey(KeyCode.A))
         {
             newPos.x -= movementSpd * Time.deltaTime;
+            myAnim.SetBool("walkLeft", true);
+        }
+        else
+        {
+            myAnim.SetBool("walkLeft", false);
+            myAnim.SetBool("playerIdle", true);
         }
         if (Input.GetKey(KeyCode.D))
         {
             newPos.x += movementSpd * Time.deltaTime;
+            myAnim.SetBool("walkRight", true);
         }
+        else
+        {
+            myAnim.SetBool("walkRight", false);
+            myAnim.SetBool("playerIdle", true);
+        }
+
+
         transform.position = newPos;
     }
 

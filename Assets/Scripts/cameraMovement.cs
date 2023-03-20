@@ -36,3 +36,4 @@ public class cameraMovement : MonoBehaviour
     }
 }
 
+// add * Time.deltaTime; at the end of movement 
