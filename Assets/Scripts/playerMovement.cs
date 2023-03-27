@@ -123,6 +123,8 @@ public class playerMovement : MonoBehaviour
 
         if(collision.gameObject.name == "sign")
         {
+            cakeDialogue.SetActive(false);
+            doorDialogue.SetActive(false);
             signDialogue.SetActive(true);
             talismanObtained.SetActive(false);
             chickenText.SetActive(false);
