@@ -10,7 +10,7 @@ public class playerMovement : MonoBehaviour
     public GameObject chickenText;
     public GameObject talismanObtained;
     public GameObject jobDone;
-    public GameObject textBox;
+    //public GameObject textBox;
     public GameObject tempdialogue;
     public GameObject signDialogue;
     public GameObject cakeDialogue;
@@ -133,6 +133,8 @@ public class playerMovement : MonoBehaviour
 
         if (collision.gameObject.name == "cake")
         {
+            doorDialogue.SetActive(false);
+            signDialogue.SetActive(false);
             cakeDialogue.SetActive(true);
             talismanObtained.SetActive(false);
             chickenText.SetActive(false);
@@ -143,6 +145,8 @@ public class playerMovement : MonoBehaviour
 
         if (collision.gameObject.name == "exit")
         {
+            cakeDialogue.SetActive(false);
+            signDialogue.SetActive(false);
             doorDialogue.SetActive(true);
             talismanObtained.SetActive(false);
             chickenText.SetActive(false);
