@@ -12,6 +12,9 @@ public class playerMovement : MonoBehaviour
     public GameObject jobDone;
     public GameObject textBox;
     public GameObject tempdialogue;
+    public GameObject signDialogue;
+    public GameObject cakeDialogue;
+    public GameObject doorDialogue; 
 
     Animator myAnim;
 
@@ -27,6 +30,9 @@ public class playerMovement : MonoBehaviour
         talismanObtained.SetActive(false);
         jobDone.SetActive(false);
         tempdialogue.SetActive(true);
+        cakeDialogue.SetActive(false);
+        signDialogue.SetActive(false);
+        doorDialogue.SetActive(false);
 
         myAnim = GetComponent<Animator>();
     }
@@ -37,58 +43,6 @@ public class playerMovement : MonoBehaviour
    
         Vector3 newPos = transform.position;
 
-        //if (Input.GetKey(KeyCode.W))
-        //{
-        //    newPos.y += movementSpd * Time.deltaTime;
-        //    myAnim.SetBool("playerUp", true);
-        //}
-        //else
-        //{
-        //    myAnim.SetBool("playerUp", false);
-        //    myAnim.SetBool("walkDown", false);
-        //    myAnim.SetBool("walkLeft", false);
-        //    myAnim.SetBool("walkRight", false);
-        //    myAnim.SetBool("playerIdle", true);
-        //}
-        //if (Input.GetKey(KeyCode.S))
-        //{
-        //    newPos.y -= movementSpd * Time.deltaTime;
-        //    myAnim.SetBool("walkDown", true);
-        //}
-        //else
-        //{ 
-        //    myAnim.SetBool("playerUp", false);
-        //    myAnim.SetBool("walkDown", false);
-        //    myAnim.SetBool("walkLeft", false);
-        //    myAnim.SetBool("walkRight", false);
-        //    myAnim.SetBool("playerIdle", true);
-        //}
-        //if (Input.GetKey(KeyCode.A))
-        //{
-        //    newPos.x -= movementSpd * Time.deltaTime;
-        //    myAnim.SetBool("walkLeft", true);
-        //}
-        //else
-        //{
-        //    myAnim.SetBool("playerUp", false);
-        //    myAnim.SetBool("walkDown", false);
-        //    myAnim.SetBool("walkLeft", false);
-        //    myAnim.SetBool("walkRight", false);
-        //    myAnim.SetBool("playerIdle", true);
-        //}
-        //if (Input.GetKey(KeyCode.D))
-        //{
-        //    newPos.x += movementSpd * Time.deltaTime;
-        //    myAnim.SetBool("walkRight", true);
-        //}
-        //else
-        //{
-        //    myAnim.SetBool("playerUp", false);
-        //    myAnim.SetBool("walkDown", false);
-        //    myAnim.SetBool("walkLeft", false);
-        //    myAnim.SetBool("walkRight", false);
-        //    myAnim.SetBool("playerIdle", true);
-        //}
         if (Input.GetKey(KeyCode.W))
         {
             newPos.y += movementSpd * Time.deltaTime;
@@ -141,6 +95,9 @@ public class playerMovement : MonoBehaviour
             talismanObtained.SetActive(true);
             chickenText.SetActive(false);
             tempdialogue.SetActive(true);
+            signDialogue.SetActive(false);
+            cakeDialogue.SetActive(false);
+            doorDialogue.SetActive(false);
             Destroy(collision.gameObject);
         }
         if (wandAcquired && collision.gameObject.name == "enemy")
@@ -150,12 +107,48 @@ public class playerMovement : MonoBehaviour
             chickenText.SetActive(false);
             jobDone.SetActive(true);
             tempdialogue.SetActive(true);
+            signDialogue.SetActive(false);
+            cakeDialogue.SetActive(false);
+            doorDialogue.SetActive(false);
         } else if (!wandAcquired && collision.gameObject.name == "enemy")
         {
             chickenText.SetActive(true);
             talismanObtained.SetActive(false);
             jobDone.SetActive(false);
             tempdialogue.SetActive(true);
+            signDialogue.SetActive(false);
+            cakeDialogue.SetActive(false);
+            doorDialogue.SetActive(false);
+        }
+
+        if(collision.gameObject.name == "sign")
+        {
+            signDialogue.SetActive(true);
+            talismanObtained.SetActive(false);
+            chickenText.SetActive(false);
+            jobDone.SetActive(false);
+            //tempdialogue.SetActive(true);
+
+        }
+
+        if (collision.gameObject.name == "cake")
+        {
+            cakeDialogue.SetActive(true);
+            talismanObtained.SetActive(false);
+            chickenText.SetActive(false);
+            jobDone.SetActive(false);
+            //tempdialogue.SetActive(true);
+
+        }
+
+        if (collision.gameObject.name == "exit")
+        {
+            doorDialogue.SetActive(true);
+            talismanObtained.SetActive(false);
+            chickenText.SetActive(false);
+            jobDone.SetActive(false);
+           // tempdialogue.SetActive(true);
+
         }
     }
 
