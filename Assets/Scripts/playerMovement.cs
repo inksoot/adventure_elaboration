@@ -14,7 +14,8 @@ public class playerMovement : MonoBehaviour
     public GameObject tempdialogue;
     public GameObject signDialogue;
     public GameObject cakeDialogue;
-    public GameObject doorDialogue; 
+    public GameObject doorDialogue;
+    public GameObject saltDialogue;
 
     Animator myAnim;
 
@@ -33,6 +34,7 @@ public class playerMovement : MonoBehaviour
         cakeDialogue.SetActive(false);
         signDialogue.SetActive(false);
         doorDialogue.SetActive(false);
+        saltDialogue.SetActive(false);
 
         myAnim = GetComponent<Animator>();
     }
@@ -93,6 +95,7 @@ public class playerMovement : MonoBehaviour
         {
             wandAcquired = true;
             talismanObtained.SetActive(true);
+            saltDialogue.SetActive(false);
             chickenText.SetActive(false);
             tempdialogue.SetActive(true);
             signDialogue.SetActive(false);
@@ -103,6 +106,7 @@ public class playerMovement : MonoBehaviour
         if (wandAcquired && collision.gameObject.name == "enemy")
         {
             Destroy(collision.gameObject);
+            saltDialogue.SetActive(false);
             talismanObtained.SetActive(false);
             chickenText.SetActive(false);
             jobDone.SetActive(true);
@@ -114,6 +118,7 @@ public class playerMovement : MonoBehaviour
         {
             chickenText.SetActive(true);
             talismanObtained.SetActive(false);
+            saltDialogue.SetActive(false);
             jobDone.SetActive(false);
             tempdialogue.SetActive(true);
             signDialogue.SetActive(false);
@@ -124,37 +129,52 @@ public class playerMovement : MonoBehaviour
         if(collision.gameObject.name == "sign")
         {
             cakeDialogue.SetActive(false);
+            saltDialogue.SetActive(false);
             doorDialogue.SetActive(false);
             signDialogue.SetActive(true);
             talismanObtained.SetActive(false);
             chickenText.SetActive(false);
             jobDone.SetActive(false);
-            //tempdialogue.SetActive(true);
+            tempdialogue.SetActive(true);
 
         }
 
         if (collision.gameObject.name == "cake")
         {
             doorDialogue.SetActive(false);
+            saltDialogue.SetActive(false);
             signDialogue.SetActive(false);
             cakeDialogue.SetActive(true);
             talismanObtained.SetActive(false);
             chickenText.SetActive(false);
             jobDone.SetActive(false);
-            //tempdialogue.SetActive(true);
+            tempdialogue.SetActive(true);
 
         }
 
         if (collision.gameObject.name == "exit")
         {
             cakeDialogue.SetActive(false);
+            saltDialogue.SetActive(false);
             signDialogue.SetActive(false);
             doorDialogue.SetActive(true);
             talismanObtained.SetActive(false);
             chickenText.SetActive(false);
             jobDone.SetActive(false);
-           // tempdialogue.SetActive(true);
+            tempdialogue.SetActive(true);
 
+        }
+
+        if(collision.gameObject.name == "sacrificial circle")
+        {
+            saltDialogue.SetActive(true);
+            cakeDialogue.SetActive(false);
+            signDialogue.SetActive(false);
+            doorDialogue.SetActive(false);
+            talismanObtained.SetActive(false);
+            chickenText.SetActive(false);
+            jobDone.SetActive(false);
+            tempdialogue.SetActive(true);
         }
     }
 
