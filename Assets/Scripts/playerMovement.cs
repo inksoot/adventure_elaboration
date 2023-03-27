@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 //public UnityEngine.UI.Text textbox;
 
 public class playerMovement : MonoBehaviour
 {
     public float movementSpd = 0.7f;
     bool wandAcquired = false;
+    bool enemyDefeated = false;
     public GameObject chickenText;
     public GameObject talismanObtained;
     public GameObject jobDone;
@@ -114,6 +116,7 @@ public class playerMovement : MonoBehaviour
             signDialogue.SetActive(false);
             cakeDialogue.SetActive(false);
             doorDialogue.SetActive(false);
+            enemyDefeated = true;
         } else if (!wandAcquired && collision.gameObject.name == "enemy")
         {
             chickenText.SetActive(true);
@@ -124,6 +127,7 @@ public class playerMovement : MonoBehaviour
             signDialogue.SetActive(false);
             cakeDialogue.SetActive(false);
             doorDialogue.SetActive(false);
+            
         }
 
         if(collision.gameObject.name == "sign")
@@ -152,7 +156,7 @@ public class playerMovement : MonoBehaviour
 
         }
 
-        if (collision.gameObject.name == "exit")
+        if (collision.gameObject.name == "exit" && enemyDefeated == false)
         {
             cakeDialogue.SetActive(false);
             saltDialogue.SetActive(false);
@@ -165,7 +169,13 @@ public class playerMovement : MonoBehaviour
 
         }
 
-        if(collision.gameObject.name == "sacrificial circle")
+        if (collision.gameObject.name == "exit" && enemyDefeated == true)
+        {
+            SceneManager.LoadScene("endingScene");
+
+        }
+
+        if (collision.gameObject.name == "sacrificial circle")
         {
             saltDialogue.SetActive(true);
             cakeDialogue.SetActive(false);
